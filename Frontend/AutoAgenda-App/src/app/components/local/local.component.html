@@ -5,16 +5,21 @@
       <div class="form-group mb-2">
         <div class="input-group-text">
           <div class="input-group-prepend pr-2">Filtro:</div>
-          <input type="text" class="form-control" placeholder="Buscar"
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar"
             [(ngModel)]="filtroLista"
-          >
+          />
         </div>
       </div>
     </div>
     <div>
       <a class="d-flex btn btn-outline-primary my-2" href="#">
         <i class="fa fa-plus-circle my-1"></i>
-        <b class="ml-1 d-none d-sm-block">Novo</b>
+        <b class="ml-1 d-none d-sm-block" (click)="openModal(template1)"
+          >Novo</b
+        >
       </a>
     </div>
   </div>
@@ -29,14 +34,23 @@
     </thead>
     <tbody *ngIf="locais && locais.length">
       <tr *ngFor="let local of locaisFiltrados">
-        <td>{{local.nome}}</td>
-        <td>{{local.informatizada}}</td>
-        <td>{{local.capacidade}}</td>
+        <td>{{ local.nome }}</td>
+        <td>{{ local.informatizada }}</td>
+        <td>{{ local.capacidade }}</td>
         <td>
-          <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar">
+          <button
+            type="button"
+            class="btn btn-primary btn-sm mr-2"
+            tooltip="Editar"
+          >
             <i class="fa fa-edit"></i>
           </button>
-          <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            tooltip="Excluir"
+            (click)="openModal(template)"
+          >
             <i class="fa fa-trash"></i>
           </button>
         </td>
@@ -52,11 +66,75 @@
   </table>
 </div>
 
-
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Você tem certeza que deseja deletar este local?</p>
-    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
-    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+    <button type="button" class="btn btn-default" (click)="confirm()">
+      Sim
+    </button>
+    <button type="button" class="btn btn-primary" (click)="decline()">
+      Não
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #template1>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="inputEmail3" class="form-label">Nome</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="inputEmail3" />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword3" class="form-label">Capacidade</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputPassword3" />
+        </div>
+      </div>
+      <fieldset class="mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Informatizada?</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gridRadios"
+              id="gridRadios1"
+              value="option1"
+              checked
+            />
+            <label class="form-check-label" for="gridRadios1"> Sim </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gridRadios"
+              id="gridRadios2"
+              value="option2"
+            />
+            <label class="form-check-label" for="gridRadios2"> Não </label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button">Button</button>
+    </div>
   </div>
 </ng-template>

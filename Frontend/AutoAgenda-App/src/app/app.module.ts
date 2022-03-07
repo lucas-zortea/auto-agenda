@@ -18,6 +18,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { LocalService } from './services/local.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { TituloComponent } from './shared/titulo/titulo.component';
+import { ProfessoresComponent } from './components/professores/professores.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TituloComponent } from './shared/titulo/titulo.component';
       LocalComponent,
       NavComponent,
       TituloComponent,
-      DateTimeFormatPipe
+      DateTimeFormatPipe,
+      ProfessoresComponent
    ],
   imports: [
     BrowserModule,

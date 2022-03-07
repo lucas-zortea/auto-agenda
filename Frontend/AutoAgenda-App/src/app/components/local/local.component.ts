@@ -23,7 +23,7 @@ export class LocalComponent implements OnInit {
     private modalService: BsModalService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService
-    ) { }
+  ) {}
 
   public ngOnInit() {
     this.spinner.show();
@@ -32,44 +32,46 @@ export class LocalComponent implements OnInit {
   public getLocais(): void {
     this.localService.getLocais().subscribe(
       (_locais: Local[]) => {
-        this.locais = _locais
-        this.locaisFiltrados = this.locais
+        this.locais = _locais;
+        this.locaisFiltrados = this.locais;
       },
-      error => {
+      (error) => {
         console.log(error);
         this.spinner.hide();
         this.toastr.error('Erro ao carregar o conteúdo', 'Erro!');
       },
       () => this.spinner.hide()
-      );
-    }
-
-    public get filtroLista(): string{
-      return this._filtroLista;
-    }
-
-    public set filtroLista(value: string){
-      this._filtroLista = value;
-      this.locaisFiltrados = this.filtroLista ? this.filtrarLocais(this.filtroLista) : this.locais;
-    }
-
-    public filtrarLocais(filtrarPor: string): Local[] {
-      filtrarPor = filtrarPor.toLocaleLowerCase();
-      return this.locais.filter(
-        (local: any) => local.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-      );
-    }
-
-    openModal(template: TemplateRef<any>): void {
-      this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
-    }
-
-    confirm(): void {
-      this.modalRef?.hide();
-      this.toastr.success('O local foi deletado com sucesso', 'Deletado!');
-    }
-
-    decline(): void {
-      this.modalRef?.hide();
-    }
+    );
   }
+
+  public get filtroLista(): string {
+    return this._filtroLista;
+  }
+
+  public set filtroLista(value: string) {
+    this._filtroLista = value;
+    this.locaisFiltrados = this.filtroLista
+      ? this.filtrarLocais(this.filtroLista)
+      : this.locais;
+  }
+
+  public filtrarLocais(filtrarPor: string): Local[] {
+    filtrarPor = filtrarPor.toLocaleLowerCase();
+    return this.locais.filter(
+      (local: any) => local.nome.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+    );
+  }
+
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  confirm(): void {
+    this.modalRef?.hide();
+    this.toastr.success('O local foi deletado com sucesso', 'Deletado!');
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
+  }
+}
