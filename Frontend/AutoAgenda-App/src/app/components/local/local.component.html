@@ -15,11 +15,12 @@
       </div>
     </div>
     <div>
-      <a class="d-flex btn btn-outline-primary my-2" href="#">
+      <a
+        class="d-flex btn btn-outline-primary my-2"
+        (click)="openModal(template1)"
+      >
         <i class="fa fa-plus-circle my-1"></i>
-        <b class="ml-1 d-none d-sm-block" (click)="openModal(template1)"
-          >Novo</b
-        >
+        <b class="ml-1 d-none d-sm-block"> Novo </b>
       </a>
     </div>
   </div>
@@ -80,7 +81,7 @@
 
 <ng-template #template1>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left">Novo Local</h4>
     <button
       type="button"
       class="btn-close close pull-right"

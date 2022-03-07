@@ -19,6 +19,9 @@ import { LocalService } from './services/local.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { ProfessoresComponent } from './components/professores/professores.component';
+import { DisciplinasComponent } from './components/disciplinas/disciplinas.component';
+import { InicialComponent } from './components/inicial/inicial.component';
+import { TurmasComponent } from './components/turmas/turmas.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { ProfessoresComponent } from './components/professores/professores.compo
       NavComponent,
       TituloComponent,
       DateTimeFormatPipe,
-      ProfessoresComponent
+      ProfessoresComponent,
+      DisciplinasComponent,
+      InicialComponent,
+      TurmasComponent
    ],
   imports: [
     BrowserModule,
