@@ -1,0 +1,9 @@
+.autologo {
+  max-height: 50px;
+  max-width: 160px;
+  border-radius: 3px;
+}
+
+nav {
+  margin-bottom: 10px;
+}

@@ -1,0 +1,62 @@
+<app-titulo [titulo]="'Local'"></app-titulo>
+<div class="card p-3">
+  <div class="d-flex">
+    <div class="flex-fill pr-3">
+      <div class="form-group mb-2">
+        <div class="input-group-text">
+          <div class="input-group-prepend pr-2">Filtro:</div>
+          <input type="text" class="form-control" placeholder="Buscar"
+            [(ngModel)]="filtroLista"
+          >
+        </div>
+      </div>
+    </div>
+    <div>
+      <a class="d-flex btn btn-outline-primary my-2" href="#">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block">Novo</b>
+      </a>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome</th>
+        <th>Informatizada</th>
+        <th>Capacidade</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="locais && locais.length">
+      <tr *ngFor="let local of locaisFiltrados">
+        <td>{{local.nome}}</td>
+        <td>{{local.informatizada}}</td>
+        <td>{{local.capacidade}}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm mr-2" tooltip="Editar">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!locais.length">
+      <tr>
+        <td colspan="4" class="text-center">
+          <h4>Nenhum local encontrado :(</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Você tem certeza que deseja deletar este local?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
