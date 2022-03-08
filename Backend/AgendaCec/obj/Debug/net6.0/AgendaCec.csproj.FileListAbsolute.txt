@@ -28,6 +28,7 @@ C:\Users\lucas.zortea\Documents\dev\AgendaCec\obj\Debug\net6.0\AgendaCec.dll
 C:\Users\lucas.zortea\Documents\dev\AgendaCec\obj\Debug\net6.0\ref\AgendaCec.dll
 C:\Users\lucas.zortea\Documents\dev\AgendaCec\obj\Debug\net6.0\AgendaCec.pdb
 C:\Users\lucas.zortea\Documents\dev\AgendaCec\obj\Debug\net6.0\AgendaCec.genruntimeconfig.cache
+
 C:\Users\lucas.zortea\Documents\GitHub\auto-agenda\Backend\AgendaCec\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\lucas.zortea\Documents\GitHub\auto-agenda\Backend\AgendaCec\bin\Debug\net6.0\appsettings.json
 C:\Users\lucas.zortea\Documents\GitHub\auto-agenda\Backend\AgendaCec\bin\Debug\net6.0\AgendaCec.exe
