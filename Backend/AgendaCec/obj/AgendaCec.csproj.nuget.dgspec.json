@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lucas.zortea\\Documents\\dev\\AgendaCec\\AgendaCec.csproj": {}
+    "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lucas.zortea\\Documents\\dev\\AgendaCec\\AgendaCec.csproj": {
+    "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lucas.zortea\\Documents\\dev\\AgendaCec\\AgendaCec.csproj",
+        "projectUniqueName": "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj",
         "projectName": "AgendaCec",
-        "projectPath": "C:\\Users\\lucas.zortea\\Documents\\dev\\AgendaCec\\AgendaCec.csproj",
+        "projectPath": "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj",
         "packagesPath": "C:\\Users\\lucas.zortea\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lucas.zortea\\Documents\\dev\\AgendaCec\\obj\\",
+        "outputPath": "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

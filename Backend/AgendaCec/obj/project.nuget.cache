@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/2zu2napoKCCw6OPTX9Tlss/j0oddlgtcxmUjPqerQ/pjXpcOMY4ltrk0Hk7XLQyXhaFRCCalnijpVXBJ5AXIw==",
+  "dgSpecHash": "UQyJ2QReICsi06kjOnicv/O+q/twqykRWTYDBX4oFiivqiftaoKpfqP0F1jkLuaFXE5yEsv3gg/QnDGKXOMmeg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucas.zortea\\Documents\\dev\\AgendaCec\\AgendaCec.csproj",
+  "projectFilePath": "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucas.zortea\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\lucas.zortea\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.2\\microsoft.entityframeworkcore.6.0.2.nupkg.sha512",
