@@ -15,9 +15,9 @@
       </div>
     </div>
     <div>
-      <a class="d-flex btn btn-outline-primary my-2" href="#">
+      <a class="d-flex btn btn-outline-primary my-2" (click)="openModal(template1)">
         <i class="fa fa-plus-circle my-1"></i>
-        <b class="ml-1 d-none d-sm-block" (click)="openModal(template1)"
+        <b class="ml-1 d-none d-sm-block"
           >Novo</b
         >
       </a>
@@ -80,7 +80,7 @@
 
 <ng-template #template1>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left">Novo Local</h4>
     <button
       type="button"
       class="btn-close close pull-right"
@@ -91,17 +91,24 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form [formGroup]="form">
       <div class="mb-3">
         <label for="inputEmail3" class="form-label">Nome</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3" />
+          <input type="email" class="form-control" [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" formControlName="nome" id="inputEmail3" />
+          <small *ngIf="f.nome.errors?.required" class="invalid-feedback">Nome da sala obrigatório</small>
+          <small *ngIf="f.nome.errors?.minlength" class="invalid-feedback">Tamanho mínimo 3 caracteres</small>
+          <small *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">Tamanho máximo 30 caracteres</small>
         </div>
       </div>
       <div class="mb-3">
         <label for="inputPassword3" class="form-label">Capacidade</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="inputPassword3" />
+          <input type="number" class="form-control" [ngClass]="{'is-invalid': f.capacidade.errors && f.capacidade.touched}" formControlName="capacidade" id="inputPassword3" />
+          <small *ngIf="f.capacidade.errors?.required" class="invalid-feedback">Capacidade do local obrigatório</small>
+          <small *ngIf="f.capacidade.errors?.min" class="invalid-feedback">Capacidade inválida</small>
+          <small *ngIf="f.capacidade.errors?.max">Capacidade inválida</small>
+
         </div>
       </div>
       <fieldset class="mb-3">
