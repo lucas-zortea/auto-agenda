@@ -1,5 +1,4 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -19,34 +18,17 @@ export class LocalComponent implements OnInit {
 
   private _filtroLista: string = '';
 
-  public form!: FormGroup;
-
-  get f(): any{
-    return this.form.controls;
-  }
-
   constructor(
     private localService: LocalService,
     private modalService: BsModalService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
-    private fb: FormBuilder
+    private spinner: NgxSpinnerService
   ) {}
 
   public ngOnInit() {
     this.spinner.show();
     this.getLocais();
-    this.validation();
   }
-
-  public validation(): void {
-    this.form = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      capacidade: ['', [Validators.required, Validators.min(1), Validators.max(150)]],
-      informatizada: [Validators.required]
-    });
-  }
-
   public getLocais(): void {
     this.localService.getLocais().subscribe(
       (_locais: Local[]) => {
