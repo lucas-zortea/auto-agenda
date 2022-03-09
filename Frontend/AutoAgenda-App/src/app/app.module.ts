@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,9 +19,6 @@ import { LocalService } from './services/local.service';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { ProfessoresComponent } from './components/professores/professores.component';
-import { DisciplinasComponent } from './components/disciplinas/disciplinas.component';
-import { InicialComponent } from './components/inicial/inicial.component';
-import { TurmasComponent } from './components/turmas/turmas.component';
 
 @NgModule({
   declarations: [
@@ -30,15 +27,10 @@ import { TurmasComponent } from './components/turmas/turmas.component';
       NavComponent,
       TituloComponent,
       DateTimeFormatPipe,
-      ProfessoresComponent,
-      DisciplinasComponent,
-      InicialComponent,
-      TurmasComponent
+      ProfessoresComponent
    ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
