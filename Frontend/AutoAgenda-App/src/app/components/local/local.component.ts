@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -14,8 +15,10 @@ import { LocalService } from '../../services/local.service';
 export class LocalComponent implements OnInit {
   modalRef?: BsModalRef;
 
+  public local = {} as Local
   public locais: Local[] = [];
   public locaisFiltrados: Local[] = [];
+  localId!: number;
 
   private _filtroLista: string = '';
 
@@ -30,13 +33,29 @@ export class LocalComponent implements OnInit {
     private modalService: BsModalService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: ActivatedRoute
   ) {}
+
+  public carregarLocal(): void{
+    const localIdParam = this.router.snapshot.paramMap.get('id');
+    if(localIdParam !== null){
+      this.localService.getLocalById(+localIdParam).subscribe({
+        next: (local: Local) => {
+          this.local = { ...local };
+          this.form.patchValue(this.local);
+        },
+        error: (error: any) => {console.error(error)},
+        complete: () => {}
+      })
+    }
+  }
 
   public ngOnInit() {
     this.spinner.show();
     this.getLocais();
     this.validation();
+    this.carregarLocal();
   }
 
   public validation(): void {
@@ -80,16 +99,63 @@ export class LocalComponent implements OnInit {
     );
   }
 
-  openModal(template: TemplateRef<any>): void {
+  openModal(template: TemplateRef<any>, localId: number): void {
+    this.localId = localId;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
+  openModal1(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  openModal2(template: TemplateRef<any>, localId: number): void {
+    this.localId = localId;
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+
   confirm(): void {
     this.modalRef?.hide();
-    this.toastr.success('O local foi deletado com sucesso', 'Deletado!');
+    this.spinner.show();
+    this.localService.deleteLocal(this.localId).subscribe(
+      (result: any) => {
+          this.toastr.success('O local foi deletado com sucesso', 'Deletado!');
+          this.spinner.hide();
+          this.getLocais();
+      },
+      (error: any) => {
+        console.error(error);
+        this.toastr.error(`Erro ao deletar o local ${this.localId}`);
+        this.spinner.hide();
+
+      },
+      () => this.spinner.hide()
+      )
   }
 
   decline(): void {
     this.modalRef?.hide();
+  }
+
+  public salvarAlteracao(): void{
+    this.spinner.show();
+    if(this.form.valid){
+
+      this.local = { ... this.form.value };
+
+      this.localService.postLocal(this.local).subscribe(
+        () => {
+          this.toastr.success('Local salvo com sucesso', 'Sucesso');
+          this.spinner.hide();
+          this.getLocais();
+        },
+        (error: any) => {
+          console.error(error);
+          this.spinner.hide();
+          this.toastr.error('Erro ao salvar local', 'Erro');
+        },
+        () => this.spinner.hide()
+      )
+    }
   }
 }

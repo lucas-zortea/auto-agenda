@@ -8,14 +8,14 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Buscar"
+            placeholder="Buscar por nome"
             [(ngModel)]="filtroLista"
           />
         </div>
       </div>
     </div>
     <div>
-      <a class="d-flex btn btn-outline-primary my-2" (click)="openModal(template1)">
+      <a class="d-flex btn btn-outline-primary my-2" (click)="openModal1(template1)">
         <i class="fa fa-plus-circle my-1"></i>
         <b class="ml-1 d-none d-sm-block"
           >Novo</b
@@ -42,6 +42,7 @@
             type="button"
             class="btn btn-primary btn-sm mr-2"
             tooltip="Editar"
+            (click)="openModal2(template2, local.id)"
           >
             <i class="fa fa-edit"></i>
           </button>
@@ -49,7 +50,7 @@
             type="button"
             class="btn btn-danger btn-sm"
             tooltip="Excluir"
-            (click)="openModal(template)"
+            (click)="openModal(template, local.id)"
           >
             <i class="fa fa-trash"></i>
           </button>
@@ -68,7 +69,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Você tem certeza que deseja deletar este local?</p>
+    <p>Você tem certeza que deseja deletar o local de código {{this.localId}}?</p>
     <button type="button" class="btn btn-default" (click)="confirm()">
       Sim
     </button>
@@ -118,10 +119,10 @@
             <input
               class="form-check-input"
               type="radio"
-              name="gridRadios"
-              id="gridRadios1"
-              value="option1"
-              checked
+              name="informatizada"
+              id="informatizada"
+              [value]="true"
+              formControlName="informatizada"
             />
             <label class="form-check-label" for="gridRadios1"> Sim </label>
           </div>
@@ -129,9 +130,10 @@
             <input
               class="form-check-input"
               type="radio"
-              name="gridRadios"
-              id="gridRadios2"
-              value="option2"
+              name="informatizada"
+              id="informatizada"
+              [value]="false"
+              formControlName="informatizada"
             />
             <label class="form-check-label" for="gridRadios2"> Não </label>
           </div>
@@ -141,7 +143,76 @@
   </div>
   <div class="modal-footer">
     <div class="d-grid gap-2">
-      <button class="btn btn-primary" type="button">Button</button>
+      <button class="btn btn-primary" type="button" [disabled]="!form.valid" (click)="salvarAlteracao()">Salvar</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #template2>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Editar Local {{this.localId}}</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <label for="inputEmail3" class="form-label">Nome</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" formControlName="nome" id="inputEmail3" value="{{this.local.nome}}" />
+          <small *ngIf="f.nome.errors?.required" class="invalid-feedback">Nome da sala obrigatório</small>
+          <small *ngIf="f.nome.errors?.minlength" class="invalid-feedback">Tamanho mínimo 3 caracteres</small>
+          <small *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">Tamanho máximo 30 caracteres</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword3" class="form-label">Capacidade</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [ngClass]="{'is-invalid': f.capacidade.errors && f.capacidade.touched}" formControlName="capacidade" id="inputPassword3" />
+          <small *ngIf="f.capacidade.errors?.required" class="invalid-feedback">Capacidade do local obrigatório</small>
+          <small *ngIf="f.capacidade.errors?.min" class="invalid-feedback">Capacidade inválida</small>
+          <small *ngIf="f.capacidade.errors?.max">Capacidade inválida</small>
+
+        </div>
+      </div>
+      <fieldset class="mb-3">
+        <legend class="col-form-label col-sm-2 pt-0">Informatizada?</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="informatizada"
+              id="informatizada"
+              [value]="true"
+              formControlName="informatizada"
+            />
+            <label class="form-check-label" for="gridRadios1"> Sim </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="informatizada"
+              id="informatizada"
+              [value]="false"
+              formControlName="informatizada"
+            />
+            <label class="form-check-label" for="gridRadios2"> Não </label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button" [disabled]="!form.valid" (click)="salvarAlteracao()">Salvar</button>
     </div>
   </div>
 </ng-template>

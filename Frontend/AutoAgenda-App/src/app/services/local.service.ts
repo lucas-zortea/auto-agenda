@@ -26,7 +26,7 @@ export class LocalService {
     return this.http.put<Local>(`${this.baseURL}/${id}`, Local);
   }
 
-  public deleteLocal(id: number): Observable<string> {
-    return this.http.delete<string>(`${this.baseURL}/${id}`);
+  public deleteLocal(id: number): Observable<any> {
+    return this.http.delete(`https://localhost:7108/v2/locais/${id}`);
   }
 }
