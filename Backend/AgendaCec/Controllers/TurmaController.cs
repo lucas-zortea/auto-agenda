@@ -71,9 +71,8 @@ namespace AgendaCec.Controllers
                     Nome = model.Nome,
                     DataInicio = model.DataInicio,
                     DataFim = model.DataFim,
-                    NumeroAlunos = model.DataInicio,
-                    Disciplinas = model.Disciplina,
-                    Eventos = model.Evento,
+                    NumeroAlunos = model.NumeroAlunos,
+
                 };
                 await context.Turmas.AddAsync(Turma); //Adicionando as informações
                 await context.SaveChangesAsync(); //Salvando as informações 

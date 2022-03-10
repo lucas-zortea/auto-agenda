@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class LocalService {
+  getTurma() {
+    throw new Error('Method not implemented.');
+  }
   baseURL = `https://localhost:7108/v1/locais`;
 
   constructor(private http: HttpClient) {}
