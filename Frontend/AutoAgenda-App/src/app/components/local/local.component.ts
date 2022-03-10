@@ -19,6 +19,11 @@ export class LocalComponent implements OnInit {
   public locais: Local[] = [];
   public locaisFiltrados: Local[] = [];
   localId!: number;
+  localNome!:string;
+  localInformatizado!: boolean;
+  localCapacidade!: number;
+
+  estadoSalvar = 'post';
 
   private _filtroLista: string = '';
 
@@ -99,17 +104,25 @@ export class LocalComponent implements OnInit {
     );
   }
 
-  openModal(template: TemplateRef<any>, localId: number): void {
+  openModal(template: TemplateRef<any>, localId: number, localNome: string): void {
     this.localId = localId;
+    this.localNome = localNome;
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   openModal1(template: TemplateRef<any>): void {
+    this.estadoSalvar = 'post'
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
-  openModal2(template: TemplateRef<any>, localId: number): void {
+  openModal2(template: TemplateRef<any>, localId: number, localNome: string, localInformatizado: boolean, localCapacidade: number): void {
+    this.estadoSalvar = 'put';
+    console.log(this.estadoSalvar);
     this.localId = localId;
+    this.localNome = localNome;
+    this.localInformatizado = localInformatizado;
+    this.localCapacidade = localCapacidade;
+
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
@@ -140,22 +153,39 @@ export class LocalComponent implements OnInit {
   public salvarAlteracao(): void{
     this.spinner.show();
     if(this.form.valid){
+      if(this.estadoSalvar === 'post'){
 
-      this.local = { ... this.form.value };
+        this.local = { ... this.form.value };
+        this.localService.postLocal(this.local).subscribe(
+          () => {
+            this.toastr.success('Local salvo com sucesso', 'Sucesso');
+            this.spinner.hide();
+            this.getLocais();
+          },
+          (error: any) => {
+            console.error(error);
+            this.spinner.hide();
+            this.toastr.error('Erro ao salvar local', 'Erro');
+          },
+          () => this.spinner.hide()
+        );
+      }else{
 
-      this.localService.postLocal(this.local).subscribe(
-        () => {
-          this.toastr.success('Local salvo com sucesso', 'Sucesso');
-          this.spinner.hide();
-          this.getLocais();
-        },
-        (error: any) => {
-          console.error(error);
-          this.spinner.hide();
-          this.toastr.error('Erro ao salvar local', 'Erro');
-        },
-        () => this.spinner.hide()
-      )
+        this.local = {id: this.localId, ... this.form.value };
+        this.localService.putLocal(this.localId, this.local).subscribe(
+          () => {
+            this.toastr.success('Local salvo com sucesso', 'Sucesso');
+            this.spinner.hide();
+            this.getLocais();
+          },
+          (error: any) => {
+            console.error(error);
+            this.spinner.hide();
+            this.toastr.error('Erro ao salvar local', 'Erro');
+          },
+          () => this.spinner.hide()
+        );
+      }
     }
   }
 }

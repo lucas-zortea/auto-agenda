@@ -35,14 +35,15 @@
     <tbody *ngIf="locais && locais.length">
       <tr *ngFor="let local of locaisFiltrados">
         <td>{{ local.nome }}</td>
-        <td>{{ local.informatizada }}</td>
+        <td *ngIf="local.informatizada"><i class="fas fa-check-circle" style="color: green;"></i></td>
+        <td *ngIf="!local.informatizada"><i class="fas fa-circle-xmark" style="color: red;"></i></td>
         <td>{{ local.capacidade }}</td>
         <td>
           <button
             type="button"
             class="btn btn-primary btn-sm mr-2"
             tooltip="Editar"
-            (click)="openModal2(template2, local.id)"
+            (click)="openModal2(template2, local.id, local.nome, local.informatizada, local.capacidade)"
           >
             <i class="fa fa-edit"></i>
           </button>
@@ -50,7 +51,7 @@
             type="button"
             class="btn btn-danger btn-sm"
             tooltip="Excluir"
-            (click)="openModal(template, local.id)"
+            (click)="openModal(template, local.id, local.nome)"
           >
             <i class="fa fa-trash"></i>
           </button>
@@ -69,7 +70,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Você tem certeza que deseja deletar o local de código {{this.localId}}?</p>
+    <p>Você tem certeza que deseja deletar o local {{this.localNome}}?</p>
     <button type="button" class="btn btn-default" (click)="confirm()">
       Sim
     </button>
@@ -143,14 +144,14 @@
   </div>
   <div class="modal-footer">
     <div class="d-grid gap-2">
-      <button class="btn btn-primary" type="button" [disabled]="!form.valid" (click)="salvarAlteracao()">Salvar</button>
+      <button class="btn btn-primary" type="button" [disabled]="!form.valid" (click)="salvarAlteracao()"><i class="far fa-save"></i> Salvar</button>
     </div>
   </div>
 </ng-template>
 
 <ng-template #template2>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Editar Local {{this.localId}}</h4>
+    <h4 class="modal-title pull-left">Editar Local {{this.localNome}}</h4>
     <button
       type="button"
       class="btn-close close pull-right"
@@ -165,7 +166,7 @@
       <div class="mb-3">
         <label for="inputEmail3" class="form-label">Nome</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" formControlName="nome" id="inputEmail3" value="{{this.local.nome}}" />
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" formControlName="nome" id="inputEmail3" placeholder="{{this.localNome}}" />
           <small *ngIf="f.nome.errors?.required" class="invalid-feedback">Nome da sala obrigatório</small>
           <small *ngIf="f.nome.errors?.minlength" class="invalid-feedback">Tamanho mínimo 3 caracteres</small>
           <small *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">Tamanho máximo 30 caracteres</small>
@@ -174,7 +175,7 @@
       <div class="mb-3">
         <label for="inputPassword3" class="form-label">Capacidade</label>
         <div class="col-sm-10">
-          <input type="number" class="form-control" [ngClass]="{'is-invalid': f.capacidade.errors && f.capacidade.touched}" formControlName="capacidade" id="inputPassword3" />
+          <input type="number" class="form-control" [ngClass]="{'is-invalid': f.capacidade.errors && f.capacidade.touched}" formControlName="capacidade" id="inputPassword3" placeholder="{{this.localCapacidade}}" />
           <small *ngIf="f.capacidade.errors?.required" class="invalid-feedback">Capacidade do local obrigatório</small>
           <small *ngIf="f.capacidade.errors?.min" class="invalid-feedback">Capacidade inválida</small>
           <small *ngIf="f.capacidade.errors?.max">Capacidade inválida</small>
