@@ -20,7 +20,7 @@ namespace AgendaCec.Controllers
                 var instrutores = await context
                 .Instrutores
                 .ToListAsync();
-                return Ok(new ResultViewModel<List<Instrutor>>(instrutores));
+                return Ok(new List<Instrutor>(instrutores));
 
             }
             catch

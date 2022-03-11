@@ -72,7 +72,7 @@ namespace AgendaCec.Data.Mappings
                         .HasForeignKey("DisciplinaId")
                         .HasConstraintName("FK_InstrutorDisciplina_DisciplinaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                );
+            );
         }
     }
 }

@@ -15,7 +15,7 @@ namespace AgendaCec.Data
 
         protected override void OnConfiguring(
             DbContextOptionsBuilder options)
-            => options.UseMySql("server=localhost;user=root;password=Autoglass@2020;database=agenda-cec",
+            => options.UseMySql("server=localhost;user=root;password=root;database=agenda-cec",
             new MySqlServerVersion(new Version(8, 0, 27)));
     }
 }
