@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./turmas.component.css'],
 })
 export class TurmasComponent implements OnInit {
+  turmaService: any;
   public get localService(): LocalService {
     return this._localService;
   }
@@ -63,19 +64,19 @@ export class TurmasComponent implements OnInit {
     });
   }
 
-  public getLocais(): void {
-    this.localService.getTurma().subscribe(
-      (_turmas: Turma[]) => {
+  public getLocais(): any {
+    this.turmaService.getTurma().subscribe({
+      next: (_turmas: Turma[]) => {
         this.locais = _turmas;
         this.locaisFiltrados = this.locais;
       },
-      (error: any) => {
+      error: (error: any) => {
         console.log(error);
         this.spinner.hide();
         this.toastr.error('Erro ao carregar o conteúdo', 'Erro!');
       },
-      () => this.spinner.hide()
-    );
+      continue: () => this.spinner.hide(),
+    });
   }
 
   public get filtroLista(): string {
