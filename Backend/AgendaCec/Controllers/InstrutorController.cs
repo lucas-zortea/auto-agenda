@@ -77,7 +77,7 @@ namespace AgendaCec.Controllers
                 await context.Instrutores.AddAsync(instrutor); //Adicionando as informações
                 await context.SaveChangesAsync(); //Salvando as informações 
 
-                return Created($"v1/categories/{instrutor.Id}", new ResultViewModel<Instrutor>(instrutor));
+                return Created($"v1/instrutores/{instrutor.Id}", new ResultViewModel<Instrutor>(instrutor));
             }
             catch (DbUpdateException ex)
             {
