@@ -1,3 +1,7 @@
+import { Areas } from './Areas';
+import { Instrutores } from './instrutores';
+import { Turma } from './Turma';
+
 import { Evento } from './Evento';
 
 export interface Disciplinas {
@@ -5,7 +9,10 @@ export interface Disciplinas {
   nome: string;
   slug: string;
 
-  evento: Evento[]
+  evento: Evento[];
+  Turma: Turma;
+  Instrutores: Instrutores;
+  Areas: Areas;
 
   // importar os modelos de turmas, instrutores e area
 }

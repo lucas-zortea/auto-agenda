@@ -11,5 +11,7 @@ namespace AgendaCec.Models
 
         public IList<Disciplina> Disciplinas { get; set; }
         public IList<Evento> Eventos { get; set; }
+
+
     }
 }

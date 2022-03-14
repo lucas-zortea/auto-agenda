@@ -22,6 +22,7 @@ import { ProfessoresComponent } from './components/professores/professores.compo
 import { DisciplinasComponent } from './components/disciplinas/disciplinas.component';
 import { InicialComponent } from './components/inicial/inicial.component';
 import { TurmasComponent } from './components/turmas/turmas.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TurmasComponent } from './components/turmas/turmas.component';
       ProfessoresComponent,
       DisciplinasComponent,
       InicialComponent,
-      TurmasComponent
+      TurmasComponent,
+      CalendarioComponent
    ],
   imports: [
     BrowserModule,

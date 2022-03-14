@@ -122,7 +122,7 @@ namespace AgendaCec.Controllers
             }
         }
 
-        [HttpDelete("v1/locais/{id:int}")]
+        [HttpDelete("v2/locais/{id:int}")]
         public async Task<IActionResult> DeleteAsync(
             [FromRoute] int id,
             [FromServices] AgendaCecDataContext context
@@ -140,11 +140,11 @@ namespace AgendaCec.Controllers
                 context.Locais.Remove(local);
                 await context.SaveChangesAsync();
 
-                return Ok(new ResultViewModel<Local>(local));
+                return Ok(new { messagem = "Deletado" });
             }
             catch (DbUpdateException ex)
             {
-                return StatusCode(500, new ResultViewModel<Local>("05XE7 - Não foi possível excuir a categoria"));
+                return StatusCode(500, new ResultViewModel<Local>("05XE7 - Não foi possível excuir o local"));
             }
             catch (Exception ex)
             {
