@@ -1,3 +1,4 @@
+import { DisciplinaService } from './services/disciplina.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -54,7 +55,7 @@ import { TurmasComponent } from './components/turmas/turmas.component';
     NgxSpinnerModule,
     FormsModule
   ],
-  providers: [LocalService],
+  providers: [LocalService, DisciplinaService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

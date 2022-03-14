@@ -1,28 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj": {}
+    "D:\\AUTOGLASS\\AgendaCec\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj": {
+    "D:\\AUTOGLASS\\AgendaCec\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj",
+        "projectUniqueName": "D:\\AUTOGLASS\\AgendaCec\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj",
         "projectName": "AgendaCec",
-        "projectPath": "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj",
-        "packagesPath": "C:\\Users\\lucas.zortea\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lucas.zortea\\Documents\\GitHub\\auto-agenda\\Backend\\AgendaCec\\obj\\",
+        "projectPath": "D:\\AUTOGLASS\\AgendaCec\\auto-agenda\\Backend\\AgendaCec\\AgendaCec.csproj",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+        "outputPath": "D:\\AUTOGLASS\\AgendaCec\\auto-agenda\\Backend\\AgendaCec\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\lucas.zortea\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -41,11 +40,25 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[6.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.3, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
@@ -70,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

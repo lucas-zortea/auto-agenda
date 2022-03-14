@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Backend",
+    "\\Backend\\AgendaCec",
+    "\\Backend\\AgendaCec\\Controllers",
+    "\\Backend\\AgendaCec\\ViewModels"
+  ],
+  "SelectedNode": "\\Backend\\AgendaCec\\Controllers\\DisciplinaController.cs",
+  "PreviewInSolutionExplorer": false
+}

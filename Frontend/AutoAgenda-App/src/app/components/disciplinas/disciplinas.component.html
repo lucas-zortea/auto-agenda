@@ -1,1 +1,103 @@
 <app-titulo [titulo]="'Disciplinas'"></app-titulo>
+
+<div class="card p-3">
+  <div class="d-flex">
+    <div class="flex-fill pr-3">
+      <div class="form-group mb-2">
+        <div class="input-group-text">
+          <div class="input-group-prepend pr-2">Filtro:</div>
+          <input
+          type="text"
+          class="form-control mr-2"
+          placeholder="buscar"
+          [(ngModel)]="filtroLista">
+        </div>
+      </div>
+    </div>
+    <div>
+      <a class="d-flex btn btn-outline-primary my-2" (click)="openModal(template1)">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block">Novo</b>
+      </a>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome</th>
+        <th>Area</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="disciplinas && disciplinas.length">
+      <tr *ngFor="let disciplina of disciplinasFiltradas">
+        <td>{{disciplina.nome}}</td>
+        <td>{{disciplina.areaId}}</td>
+        <td>
+          <button
+            type ="button"
+            class="btn btn-primary btn-sm mr-2"
+            tooltip="Editar">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button
+            type ="button"
+            class="btn btn-danger btn-sm"
+            tooltip="Excluir"
+            (click)="openModal(template)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!disciplinas.length">
+      <tr>
+        <td colspan="4" class="text-center">
+          <h4>Nenhum evento encontrado!</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que deseja deletar esta disciplina?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">
+      Sim
+    </button>
+    <button type="button" class="btn btn-primary" (click)="decline()">
+      Não
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #template1>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Nova Disciplina</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <label for="inputEmail3" class="form-label">Nome</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.nome.errors && f.nome.touched}" formControlName="nome" id="inputEmail3"/>
+          <small *ngIf="f.nome.errors?.required" class="invalid-feedback">Nome da disciplina obrigatório</small>
+          <small *ngIf="f.nome.errors?.minlength" class="invalid-feedback">Tamanho mínimo 3 caracteres</small>
+          <small *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">Tamanho máximo 50 caracteres</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for=""></label>
+      </div>
+    </form>
+  </div>
+</ng-template>
